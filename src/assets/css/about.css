@@ -1,0 +1,31 @@
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about-margin {
+    margin-top: 100px;
+}
+
+.about .content h3 {
+    font-weight: 700;
+    font-size: 32px;
+    color: #5f687b;
+}
+
+.about .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about .content ul li {
+    padding-bottom: 10px;
+}
+
+.about .content ul i {
+    font-size: 20px;
+    padding-right: 4px;
+    color: #522db2;
+}
+
+.about .content p:last-child {
+    margin-bottom: 0;
+}
