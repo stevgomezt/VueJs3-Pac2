@@ -1,65 +1,87 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+
+const select = (el, all = false) => {
+    el = el.trim();
+    if (all) {
+        return [...document.querySelectorAll(el)];
+    } else {
+        return document.querySelector(el);
+    }
+};
+
+const on = (type, el, listener, all = false) => {
+    let selectEl = select(el, all);
+    if (selectEl) {
+        if (all) {
+            selectEl.forEach((e) => e.addEventListener(type, listener));
+        } else {
+            selectEl.addEventListener(type, listener);
+        }
+    }
+};
+
+const onscroll = (el, listener) => {
+    el.addEventListener("scroll", listener);
+};
+
+onMounted(() => {
+    on("click", ".mobile-nav-toggle", function (e) {
+        select("#navbar").classList.toggle("navbar-mobile");
+        this.classList.toggle("bi-list");
+        this.classList.toggle("bi-x");
+    });
+});
+</script>
 
 <template>
+    <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div
             class="container d-flex align-items-center justify-content-between"
         >
-            <nav class="navbar">
-                <h1 class="logo">
-                    <router-link to="/">
-                        <img src="../assets/images/logo.svg" alt="logo" />
-                    </router-link>
-                </h1>
-                <div id="navbar" class="navbar">
-                    <ul>
-                        <li>
-                            <router-link class="nav-link scrollto" to="/crear"
-                                >Crear</router-link
-                            >
-                        </li>
-                        <li>
-                            <router-link class="nav-link scrollto" to="/listar"
-                                >Listar</router-link
-                            >
-                        </li>
-                        <li>
-                            <router-link class="nav-link scrollto" to="/login"
-                                >LoginView</router-link
-                            >
-                        </li>
-                        <li>
-                            <router-link
-                                class="nav-link scrollto"
-                                to="/registroasesor"
-                                >RegistroAsesorView</router-link
-                            >
-                        </li>
-                        <li>
-                            <router-link
-                                class="nav-link scrollto"
-                                to="/listarasesores"
-                                >ListarAsesoresView</router-link
-                            >
-                        </li>
-                        <li>
-                            <router-link
-                                class="getstarted scrollto"
-                                to="/"
-                                style="color: #d7411d"
-                            >
-                                Cerrar sesión<i
-                                    class="bi bi-box-arrow-left"
-                                    style="font-size: 20px; color: #d7411d"
-                                ></i
-                            ></router-link>
-                        </li>
-                    </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
-                </div>
+            <h1 class="logo">
+                <a href="index.html"
+                    ><img src="../assets/images/logo.svg" alt=""
+                /></a>
+            </h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li>
+                        <a class="nav-link scrollto active" href="index.html"
+                            >Principal</a
+                        >
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="form.html"
+                            >Registro Individual</a
+                        >
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="#"
+                            >Registro Multiple</a
+                        >
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="#">Resultados</a>
+                    </li>
+                    <li><a class="nav-link scrollto" href="#">Asesores</a></li>
+                    <li>
+                        <a class="nav-link scrollto" href="about.html"
+                            >Sobre el PAC 2.0</a
+                        >
+                    </li>
+                    <li>
+                        <a class="getstarted scrollto" href="#"
+                            >Cerrar Sesion</a
+                        >
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
         </div>
     </header>
+    <!-- End Header -->
 </template>
 
 <style scoped>

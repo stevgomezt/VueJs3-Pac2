@@ -1,7 +1,21 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+
+const containerRef = ref(null);
+
+onMounted(() => {
+    document.getElementById("sign-up-btn").addEventListener("click", () => {
+        containerRef.value.classList.add("sign-up-mode");
+    });
+
+    document.getElementById("sign-in-btn").addEventListener("click", () => {
+        containerRef.value.classList.remove("sign-up-mode");
+    });
+});
+</script>
 
 <template>
-    <div class="container">
+    <div class="container" ref="containerRef">
         <div class="forms-container">
             <div class="signin-signup">
                 <form action="#" class="sign-in-form">
@@ -125,11 +139,12 @@ input {
 }
 
 .container {
-    position: relative !important;
-    width: 100% !important;
-    background-color: #fff !important;
-    min-height: 100vh !important;
-    overflow: hidden !important;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    min-height: 100vh;
+    min-width: 100%;
+    overflow: hidden;
 }
 
 .forms-container {
